@@ -1,0 +1,259 @@
+/* frontend/src/App.css */
+:root {
+  --bg-gradient: radial-gradient(circle at 50% 50%, #ffffff 0%, #f0f8ff 100%);
+  --card-bg: #ffffff;
+  --primary: #4a90e2;
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: #f0f8ff;
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+.page-bg {
+  min-height: 100vh;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: var(--bg-gradient);
+}
+
+.card {
+  width: 100%;
+  max-width: 1000px;
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+/* Header */
+.hero {
+  text-align: center;
+  margin-bottom: 30px;
+  width: 100%;
+}
+.title {
+  margin: 0;
+  font-size: 32px;
+  color: #1e293b;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.subtitle {
+  margin-top: 8px;
+  color: #64748b;
+  font-size: 15px;
+}
+
+/* Layout */
+.content-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+}
+
+.left {
+  flex: 1;
+  min-width: 320px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.right {
+  flex: 0 0 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* --- Image Frame (Fixed Size Logic) --- */
+.image-frame {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 10px;
+  
+  /* ล็อคขนาดกล่องไว้ตายตัว ไม่ให้ขยายตามรูป */
+  width: 100%;
+  height: 400px; /* แก้ความสูงตรงนี้ถ้าต้องการ */
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #e2e8f0;
+  position: relative;
+  overflow: hidden; /* ตัดส่วนเกินทิ้ง */
+}
+
+.preview-img {
+  /* บังคับให้รูปภาพอยู่ในกรอบเสมอ */
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* รูปสัดส่วนเดิม ไม่เบี้ยว และไม่ดันกรอบ */
+  
+  border-radius: 12px;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+.placeholder {
+  text-align: center;
+  color: #94a3b8;
+}
+.camera-emoji {
+  font-size: 48px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  flex-wrap: wrap; /* ยอมให้ปุ่มตกบรรทัดได้ถ้าจอมือถือเล็กมากจริงๆ */
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s;
+  font-size: 14px;
+  
+  /* แก้ปัญหาข้อความล้นปุ่ม */
+  white-space: nowrap; 
+}
+
+.btn:active { transform: scale(0.98); }
+.btn.primary {
+  background: linear-gradient(135deg, #4a90e2 0%, #3b7dd8 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+.btn.neutral {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* Result Card */
+.result-card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.result-header h3 { margin: 0; font-size: 16px; color: #334155; }
+
+.badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.badge.real { background: #dcfce7; color: #166534; }
+.badge.fake { background: #fee2e2; color: #991b1b; }
+
+/* Meter */
+.meter { margin-top: 15px; }
+.meter-bar {
+  height: 12px;
+  background: #e2e8f0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.meter-fill { height: 100%; transition: width 0.5s ease; }
+.meter-text {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 5px;
+  color: #64748b;
+}
+
+/* Raw Data Box */
+.raw {
+  margin-top: 15px;
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  overflow-x: auto;
+  font-family: monospace;
+}
+
+/* Fun Panel */
+.fun-panel {
+  background: #f8fafc;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+.fun-title { font-weight: 700; font-size: 13px; color: #334155; margin-bottom: 5px; }
+.fun-body { font-size: 12px; color: #64748b; line-height: 1.5; }
+
+/* Footer */
+.foot {
+  margin-top: 30px;
+  color: #cbd5e1;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Animations */
+.shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .content-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .left, .right {
+    width: 100%;
+    max-width: 100%;
+    flex: auto;
+  }
+  .image-frame {
+    height: 300px; /* ลดความสูงลงนิดหน่อยสำหรับมือถือ */
+  }
+}
